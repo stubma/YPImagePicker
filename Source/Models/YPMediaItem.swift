@@ -12,14 +12,14 @@ import AVFoundation
 import Photos
 
 
-public class YPMediaPhoto {
+public class YPMediaPhoto : NSObject {
     
-    public var image: UIImage { return modifiedImage ?? originalImage }
-    public let originalImage: UIImage
-    public var modifiedImage: UIImage?
-    public let fromCamera: Bool
-    public let exifMeta : [String : Any]?
-    public var asset: PHAsset?
+    @objc public var image: UIImage { return modifiedImage ?? originalImage }
+    @objc public let originalImage: UIImage
+    @objc public var modifiedImage: UIImage?
+    @objc public let fromCamera: Bool
+    @objc public let exifMeta : [String : Any]?
+    @objc public var asset: PHAsset?
     
     public init(image: UIImage, exifMeta : [String : Any]? = nil, fromCamera: Bool = false, asset: PHAsset? = nil) {
         self.originalImage = image
@@ -30,12 +30,12 @@ public class YPMediaPhoto {
     }
 }
 
-public class YPMediaVideo {
+public class YPMediaVideo : NSObject {
     
-    public var thumbnail: UIImage
-    public var url: URL
-    public let fromCamera: Bool
-    public var asset: PHAsset?
+    @objc public var thumbnail: UIImage
+    @objc public var url: URL
+    @objc public let fromCamera: Bool
+    @objc public var asset: PHAsset?
 
     public init(thumbnail: UIImage, videoURL: URL, fromCamera: Bool = false, asset: PHAsset? = nil) {
         self.thumbnail = thumbnail

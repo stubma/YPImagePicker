@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct YPWordings {
+public class YPWordings : NSObject {
     
     public var permissionPopup = PermissionPopup()
     public var videoDurationPopup = VideoDurationPopup()

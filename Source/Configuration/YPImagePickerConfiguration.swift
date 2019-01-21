@@ -14,45 +14,45 @@ import Photos
 /// Typealias for code prettiness
 internal var YPConfig: YPImagePickerConfiguration { return YPImagePickerConfiguration.shared }
 
-public struct YPImagePickerConfiguration {
+open class YPImagePickerConfiguration : NSObject {
     public static var shared: YPImagePickerConfiguration = YPImagePickerConfiguration()
     
-    public init() {}
+    public override init() {}
     
     /// Scroll to change modes, defaults to true
-    public var isScrollToChangeModesEnabled = true
+    @objc public var isScrollToChangeModesEnabled = true
     
     // Library configuration
-    public var library = YPConfigLibrary()
+    @objc public var library = YPConfigLibrary()
     
     // Video configuration
-    public var video = YPConfigVideo()
+    @objc public var video = YPConfigVideo()
     
     /// Use this property to modify the default wordings provided.
-    public var wordings = YPWordings()
+    @objc public var wordings = YPWordings()
     
     /// Use this property to modify the default icons provided.
-    public var icons = YPIcons()
+    @objc public var icons = YPIcons()
     
     /// Use this property to modify the default colors provided.
-    public var colors = YPColors()
+    @objc public var colors = YPColors()
     
     /// Set this to true if you want to force the camera output to be a squared image. Defaults to true
-    public var onlySquareImagesFromCamera = true
+    @objc public var onlySquareImagesFromCamera = true
     
     /// Enables selecting the front camera by default, useful for avatars. Defaults to false
-    public var usesFrontCamera = false
+    @objc public var usesFrontCamera = false
     
     /// Adds a Filter step in the photo taking process.  Defaults to true
-    public var showsFilters = true
+    @objc public var showsFilters = true
     
     /// Enables you to opt out from saving new (or old but filtered) images to the
     /// user's photo library. Defaults to true.
-    public var shouldSaveNewPicturesToAlbum = true
+    @objc public var shouldSaveNewPicturesToAlbum = true
     
     /// Defines the name of the album when saving pictures in the user's photo library.
     /// In general that would be your App name. Defaults to "DefaultYPImagePickerAlbumName"
-    public var albumName = "DefaultYPImagePickerAlbumName"
+    @objc public var albumName = "DefaultYPImagePickerAlbumName"
     
     /// Defines which screen is shown at launch. Video mode will only work if `showsVideo = true`.
     /// Default value is `.photo`
@@ -70,22 +70,22 @@ public struct YPImagePickerConfiguration {
     public var targetImageSize = YPImageSize.original
     
     /// Adds a Overlay View to the camera
-    public var overlayView: UIView?
+    @objc public var overlayView: UIView?
     
     /// Defines if the status bar should be hidden when showing the picker. Default is true
-    public var hidesStatusBar = true
+    @objc public var hidesStatusBar = true
     
     /// Defines if the bottom bar should be hidden when showing the picker. Default is false.
-    public var hidesBottomBar = false
+    @objc public var hidesBottomBar = false
 
     /// Defines the preferredStatusBarAppearance
-    public var preferredStatusBarStyle = UIStatusBarStyle.default
+    @objc public var preferredStatusBarStyle = UIStatusBarStyle.default
     
     /// Defines the text colour to be shown when a bottom option is selected
-    public var bottomMenuItemSelectedColour = UIColor(r: 38, g: 38, b: 38)
+    @objc public var bottomMenuItemSelectedColour = UIColor(r: 38, g: 38, b: 38)
     
     /// Defines the text colour to be shown when a bottom option is unselected
-    public var bottomMenuItemUnSelectedColour = UIColor(r: 153, g: 153, b: 153)
+    @objc public var bottomMenuItemUnSelectedColour = UIColor(r: 153, g: 153, b: 153)
     
     /// List of default filters which will be added on the filter screen
     public var filters: [YPFilter] = [
@@ -152,7 +152,7 @@ public struct YPImagePickerConfiguration {
 }
 
 /// Encapsulates library specific settings.
-public struct YPConfigLibrary {
+public class YPConfigLibrary : NSObject {
     
      public var options: PHFetchOptions? = nil
     
@@ -183,7 +183,7 @@ public struct YPConfigLibrary {
 }
 
 /// Encapsulates video specific settings.
-public struct YPConfigVideo {
+public class YPConfigVideo : NSObject {
     
     /// Choose the videoCompression.  Defaults to AVAssetExportPresetHighestQuality
     public var compression: String = AVAssetExportPresetHighestQuality

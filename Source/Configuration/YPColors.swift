@@ -8,7 +8,7 @@
 
 import UIKit
 
-public struct YPColors {
+public class YPColors : NSObject {
     
    // MARK: - Common
 

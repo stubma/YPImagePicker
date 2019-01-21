@@ -16,8 +16,8 @@ public protocol YPImagePickerDelegate: AnyObject {
 
 public class YPImagePicker: UINavigationController {
     
-    private var _didFinishPicking: (([YPMediaItem], Bool) -> Void)?
-    public func didFinishPicking(completion: @escaping (_ items: [YPMediaItem], _ cancelled: Bool) -> Void) {
+    @objc public var _didFinishPicking: (([NSObject], Bool) -> Void)?
+    public func didFinishPicking(completion: @escaping (_ items: [NSObject], _ cancelled: Bool) -> Void) {
         _didFinishPicking = completion
     }
     public weak var imagePickerDelegate: YPImagePickerDelegate?
@@ -30,7 +30,16 @@ public class YPImagePicker: UINavigationController {
     // This keeps the backwards compatibility keeps the api as simple as possible.
     // Multiple selection becomes available as an opt-in.
     private func didSelect(items: [YPMediaItem]) {
-        _didFinishPicking?(items, false)
+		var arr: [NSObject] = []
+		for item in items {
+			switch item {
+			case .photo(let p):
+				arr.append(p)
+			case .video(let v):
+				arr.append(v)
+			}
+		}
+        _didFinishPicking?(arr, false)
     }
     
     let loadingView = YPLoadingView()
@@ -42,7 +51,7 @@ public class YPImagePicker: UINavigationController {
     }
     
     /// Get a YPImagePicker with the specified configuration.
-    public required init(configuration: YPImagePickerConfiguration) {
+    @objc public required init(configuration: YPImagePickerConfiguration) {
         YPImagePickerConfiguration.shared = configuration
         picker = YPPickerVC()
         super.init(nibName: nil, bundle: nil)

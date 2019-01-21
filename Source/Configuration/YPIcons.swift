@@ -8,7 +8,7 @@
 
 import UIKit
 
-public struct YPIcons {
+public class YPIcons : NSObject {
 
     public var shouldChangeDefaultBackButtonIcon = false
     public var hideBackButtonTitle = true
