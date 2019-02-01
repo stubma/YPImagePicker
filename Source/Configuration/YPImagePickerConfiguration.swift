@@ -63,7 +63,7 @@ open class YPImagePickerConfiguration : NSObject {
     public var screens: [YPPickerScreen] = [.library, .photo]
 
     /// Adds a Crop step in the photo taking process, after filters.  Defaults to .none
-    public var showsCrop: YPCropType = .none
+	public var showsCrop: YPCropType = .none
     
     /// Ex: cappedTo:1024 will make sure images from the library or the camera will be
     /// resized to fit in a 1024x1024 box. Defaults to original image size.
